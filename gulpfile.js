@@ -1,13 +1,13 @@
-'use strict';
+'use strict'
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var autoprefixer = require('gulp-autoprefixer');
-var plumber = require('gulp-plumber');
+const gulp = require('gulp')
+const sass = require('gulp-sass')
+const browserSync = require('browser-sync')
+const autoprefixer = require('gulp-autoprefixer')
+const plumber = require('gulp-plumber')
+let reload = browserSync.reload
 
-var config = {
+const config = {
     djangoHost: 'localhost',
     djangoPort: 8000,
     jsPort: 8001,
@@ -17,7 +17,7 @@ var config = {
         'suit/templates/**/*.html',
         'demo/demo/templates/**/*.html'
     ]
-};
+}
 
 gulp.task('styles', function () {
     return gulp.src(config.watchSassFiles)
@@ -26,8 +26,8 @@ gulp.task('styles', function () {
         .pipe(autoprefixer({browsers: ['last 2 version', '> 5%']}))
         .pipe(gulp.dest(config.cssOutputDir))
         .pipe(reload({stream: true}))
-        ;
-});
+
+})
 
 gulp.task('watch', function () {
     browserSync({
@@ -40,10 +40,10 @@ gulp.task('watch', function () {
         proxy: {
             target: config.djangoHost + ':' + config.djangoPort
         }
-    });
+    })
 
-    gulp.watch(config.watchSassFiles, ['styles']);
-    gulp.watch(config.watchHtmlFiles).on('change', reload);
-});
+    gulp.watch(config.watchSassFiles, gulp.series('styles'))
+    gulp.watch(config.watchHtmlFiles).on('change', reload)
+})
 
-gulp.task('default', ['styles', 'watch']);
+gulp.task('default', gulp.series('styles', 'watch'))
