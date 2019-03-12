@@ -8,6 +8,9 @@ body.suit_layout_horizontal {
     align-items: center;
     background-color: $header-bg;
     padding-top: $header-padding-vertical;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
 
     a {
       color: $header-color;

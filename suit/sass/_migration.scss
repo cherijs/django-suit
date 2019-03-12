@@ -1,0 +1,13 @@
+//Removed from v4 alphas: .hidden-xs-up .hidden-xs-down .hidden-sm-up .hidden-sm-down .hidden-md-up .hidden-md-down .hidden-lg-up .hidden-lg-down
+
+.hidden-md-down {
+  @include media-breakpoint-down(md) {
+    display: none !important;
+  }
+}
+
+.hidden-xs-up {
+  @include media-breakpoint-up(xs) {
+    display: none !important;
+  }
+}
