@@ -1,4 +1,5 @@
 from copy import deepcopy
+
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -170,7 +171,7 @@ class MenuManager(object):
         """
         :type native_model: dict
         """
-        child_item = ChildItem(native_model['name'],  model=native_model.get('model'), url=native_model['admin_url'])
+        child_item = ChildItem(native_model['name'], model=native_model.get('model'), url=native_model['admin_url'])
         return child_item
 
     def handle_parent_menu(self, parent_item, native_app):
@@ -220,10 +221,9 @@ class MenuManager(object):
             return menu_item
         if '/' in menu_item.url:
             return menu_item
-        try:
-            from django.urls import reverse, NoReverseMatch
-        except:
-            from django.core.urlresolvers import reverse, NoReverseMatch
+
+        from django.urls import reverse, NoReverseMatch
+
         try:
             menu_item.url = reverse(menu_item.url, current_app=self.current_app)
             menu_item._url_name = menu_item.url

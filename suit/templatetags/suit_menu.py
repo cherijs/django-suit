@@ -4,10 +4,8 @@ import django
 from django import template
 from django.contrib.admin import AdminSite
 from django.http import HttpRequest
-try:
-    from django.urls import reverse, resolve
-except:
-    from django.core.urlresolvers import reverse, resolve
+from django.urls import reverse, resolve
+
 from suit.menu import MenuManager
 
 register = template.Library()
