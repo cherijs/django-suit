@@ -3,12 +3,12 @@
  */
 (function ($) {
     $.fn.suit_list_sortable = function () {
-        var $inputs = $(this);
+        var $inputs = $(this)
         if (!$inputs.length)
-            return;
+            return
 
         // Detect if this is normal or mptt table
-        var mptt_table = $inputs.first().closest('table').hasClass('table-mptt');
+        var mptt_table = $inputs.first().closest('table').hasClass('table-mptt')
 
         function perform_move($arrow, $row) {
             var $next, $prev;
@@ -32,7 +32,7 @@
                     if ($next.length && get_padding($next) === padding) {
                         var $after = find_with_children($next).last();
                         if ($after.length) {
-                            $rows_to_move.insertAfter($after).addClass('selected');
+                            $rows_to_move.insertAfter($after).addClass('selected')
                         }
                     }
                 } else {
@@ -46,12 +46,12 @@
             } else {
                 $('.selected').removeClass('selected');
                 if ($arrow.data('dir') === 'down') {
-                    $next = $row.next();
+                    $next = $row.next()
                     if ($next.is(':visible') && $next.length) {
                         $row.insertAfter($next).addClass('selected')
                     }
                 } else {
-                    $prev = $row.prev();
+                    $prev = $row.prev()
                     if ($prev.is(':visible') && $prev.length) {
                         $row.insertBefore($prev).addClass('selected')
                     }
@@ -88,7 +88,7 @@
             if (is_stacked) {
                 var $sortable_row = $sortable.closest('div.form-row'),
                     $stacked_block = $sortable.closest('div.inline-related'),
-                    $links_span = $('<span/>').attr('class', 'stacked-inline-sortable');
+                    $links_span    = $('<span/>').attr('class', 'stacked-inline-sortable')
 
                 // Add arrows to header h3, move order input and remove order field row
                 $links_span.append($up_link).append($down_link);
@@ -100,8 +100,9 @@
                 $inline_sortable.append($up_link);
                 $inline_sortable.append($down_link);
             }
+        })
 
-        });
+        $lastSortable && markLastInline($lastSortable.closest('.form-row').parent())
 
         // Filters out unchanged checkboxes, selects and sortable field itself
         function filter_unchanged(i, input) {
@@ -112,9 +113,9 @@
                     return true;
                 }
             } else if (input.type == 'select-one' || input.type == 'select-multiple') {
-                var options = input.options, option;
+                var options = input.options, option
                 for (var j = 0; j < options.length; j++) {
-                    option = options[j];
+                    option = options[j]
                     if (option.selected && option.selected == option.defaultSelected) {
                         return false;
                     } else {
@@ -136,13 +137,13 @@
 
         // Update input count right before submit
         if ($inputs && $inputs.length) {
-            var $last_input = $inputs.last();
-            var selector = $(this).selector;
+            var $last_input = $inputs.last()
+            var selector = $(this).selector
             $($last_input[0].form).submit(function (e) {
                 var i = 0, value;
                 $(selector).each(function () {
-                    var $input = $(this);
-                    var fieldset_id = $input.attr('name').split(/-\d+-/)[0];
+                    var $input = $(this)
+                    var fieldset_id = $input.attr('name').split(/-\d+-/)[0]
                     // Check if any of new dynamic block values has been added
                     var $set_block = $input.closest('.dynamic-' + fieldset_id);
                     var $changed_fields = $set_block.find(":input[type!='hidden']").filter(filter_unchanged);
@@ -150,12 +151,12 @@
                         || $set_block.hasClass('has_original')
                         || $changed_fields.serialize()
                         // Since jQuery serialize() doesn't include type=file do additional check
-                        || $changed_fields.find(":input[type='file']").addBack().length) {
-                        value = i++;
-                        $input.val(value);
+                        || $changed_fields.find(':input[type=\'file\']').addBack().length) {
+                        value = i++
+                        $input.val(value)
                     }
-                });
-            });
+                })
+            })
         }
 
         Suit.after_inline.register('bind_sortable_arrows', function (prefix, row) {
@@ -165,7 +166,7 @@
 
 
     $(function () {
-        $('.suit-sortable').suit_list_sortable();
-    });
+        $('.suit-sortable').suit_list_sortable()
+    })
 
 }(Suit.$));
