@@ -39,7 +39,7 @@ class CharacterCountTextarea(AutosizedTextarea):
 
 class ImageWidget(ClearableFileInput):
     def render(self, name, value, attrs=None, renderer=None):
-        html = super(ImageWidget, self).render(name, value, attrs, renderer)
+        html = super(ImageWidget, self).render(name, value, attrs)
         if not value or not hasattr(value, 'url') or not value.url:
             return html
         html = u'<div class="ImageWidget"><div class="float-xs-left">' \
@@ -69,7 +69,7 @@ class EnclosedInput(TextInput):
         return '<span class="input-group-%s">%s</span>' % (wrapper_class, value)
 
     def render(self, name, value, attrs=None, renderer=None):
-        output = super(EnclosedInput, self).render(name, value, attrs, renderer)
+        output = super(EnclosedInput, self).render(name, value, attrs)
         div_classes = set()
         if self.prepend:
             div_classes.add('input-group')
