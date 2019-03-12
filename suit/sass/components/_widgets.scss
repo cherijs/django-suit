@@ -95,7 +95,7 @@ fieldset {
         //width: $icon-width;
         text-align: center;
         white-space: nowrap;
-        @extend .input-group-addon;
+        @extend .input-group;
         &:hover, &:focus {
           text-decoration: none;
           color: $link-color;

@@ -25,9 +25,27 @@ $header-color: #fff;
 $header-muted-color: lighten($header-bg, 30%);
 
 // Import all Bootstrap variables
+@import "../../bower_components/bootstrap/scss/functions";
 @import "../../bower_components/bootstrap/scss/variables";
 
 
+$state-danger-border: $red;
+$state-warning-border: $yellow;
+$state-info-border: $blue;
+$state-success-border: $green;
+
+$state-danger-bg: $red;
+$state-warning-bg: $yellow;
+$state-info-bg: $blue;
+$state-success-bg: $green;
+
+$state-danger-text: $white;
+$alert-danger-text: $white;
+
+$gray: $gray-500;
+
+
+$gray-lighter: $gray-400;
 // Typography
 // --------------------------------------------------
 $font-size-h1: 1.714rem;
@@ -49,8 +67,8 @@ $font-size-lg: $font-size-h5;
 
 // Suit
 // --------------------------------------------------
-$gray-light: lighten($gray-light, 10%);
-$text-muted: $gray-light;
+$gray-light: lighten($gray-500, 10%);
+$text-muted: $gray-500;
 $sidebar-width: 200px;
 $grid-gutter-width-base: 1.875rem;
 $header-padding-horizontal: $grid-gutter-width-base;
